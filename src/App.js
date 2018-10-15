@@ -7,8 +7,12 @@ import LoginForm from './components/login-form'
 import Navbar from './components/navbar'
 import Home from './components/home'
 import Weather from './components/weather'
+import Todo from './components/todo'
 
 //import sun from './assets/Sun_icon.png'
+
+import FullNews from './components/fullNews'
+import FullMatches from './components/fullMatches'
 
 class App extends Component {
   constructor() {
@@ -56,16 +60,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        {/* greet user if logged in: */}
-        {this.state.loggedIn &&
-          <h1 className='great'>Good Day, {this.state.username}!</h1>
-        }
-        {/* Routes to different components */}
+        
         <Route
           exact path="/home"
-          component={Home}
-          render ={()=><Weather />}
+          //component={Home}
+          render ={()=><Home username={this.state.username} />}
            />
         <Route
           exact path="/"
@@ -79,7 +78,24 @@ class App extends Component {
           render={() =>
             <Signup/>}
         />
-        
+        <Route
+        path='/todos'
+        component = {Todo}/>
+
+      <Route
+          exact path="/fullNews"
+          render={() =>
+            <FullNews
+            />}
+        />
+
+          <Route
+          exact path="/fullMatches"
+          render={() =>
+            <FullMatches
+            />}
+        />
+       
       </div>
     );
   }

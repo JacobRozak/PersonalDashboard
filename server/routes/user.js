@@ -6,8 +6,11 @@ const passport = require('../passport')
 router.post('/', (req, res) => {
     console.log('user signup');
 
-    const { username, password } = req.body
-    // ADD VALIDATION
+    const { username, password,path } = req.body
+
+
+
+    
     User.findOne({ username: username }, (err, user) => {
         if (err) {
             console.log('User.js post error: ', err)
@@ -19,7 +22,7 @@ router.post('/', (req, res) => {
         else {
             const newUser = new User({
                 username: username,
-                password: password
+                password: password,
             })
             newUser.save((err, savedUser) => {
                 if (err) return res.json(err)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 class Signup extends Component {
 	constructor() {
@@ -8,6 +9,8 @@ class Signup extends Component {
 			username: '',
 			password: '',
 			confirmPassword: '',
+			email: '',
+			redirectTo:null
 
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -47,51 +50,73 @@ class Signup extends Component {
 
 
 render() {
+	if (this.state.redirectTo) {
+		return <Redirect to={{ pathname: this.state.redirectTo }} />
+	} else {
 	return (
-		<div className="SignupForm">
-			<h4>Sign up</h4>
-			<form className="form-horizontal">
-				<div className="form-group">
-					<div className="col-1 col-ml-auto">
-						<label className="form-label" htmlFor="username">Username</label>
-					</div>
-					<div className="col-3 col-mr-auto">
-						<input className="form-input"
-							type="text"
-							id="username"
-							name="username"
-							placeholder="Username"
-							value={this.state.username}
-							onChange={this.handleChange}
-						/>
-					</div>
-				</div>
-				<div className="form-group">
-					<div className="col-1 col-ml-auto">
-						<label className="form-label" htmlFor="password">Password: </label>
-					</div>
-					<div className="col-3 col-mr-auto">
-						<input className="form-input"
-							placeholder="password"
-							type="password"
-							name="password"
-							value={this.state.password}
-							onChange={this.handleChange}
-						/>
-					</div>
-				</div>
-				<div className="form-group ">
-					<div className="col-7"></div>
-					<button
-						className="btn btn-primary col-1 col-mr-auto"
-						onClick={this.handleSubmit}
-						type="submit"
-					>Sign up</button>
-				</div>
-			</form>
-		</div>
+		<div>
+           <h1 id='main'>Dev Challange</h1>
+              <div class="row">
+               <form class="col s6">
+               <div class="input-field col s6">
+               <input placeholder="Username" 
+                  id="first_name" 
+                  type="text" 
+                  class="validate"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+               ></input>
+               <label for="first_name"></label>
+               </div>
+               <div class="row">
+               <div class="input-field col s6">
+               <input placeholder="email"
+                id="email"
+                type="text" 
+				name="email"
+				id="email"
+				  >
+                </input>
+               <label for="first_name"></label>
+               </div>
+               </div>
+			   <div class="input-field col s6">
+               <input placeholder="Password" 
+                  id="first_name" 
+				  type="password" 
+                  class="validate"
+				  name="password"
+				  htmlFor="password"
+				  value={this.state.password}
+                  onChange={this.handleChange}
+               ></input>
+               <label for="first_name"></label>
+               </div>
+               <div class="row">
+               <div class="input-field col s6">
+               <input placeholder="Confirm Password"
+                id="password"
+                type="text" 
+                class="validate"
+                  type="password"
+                  name="password"
+                  htmlFor="password"
+				  >
+                </input>
+               <label for="first_name"></label>
+               </div>
+               </div>
+               <button id="but" type='submit' onClick={this.handleSubmit}>
+               
+               Register
+               </button>
+                </form>
+              </div>
+			  </div>
 
 	)
+}
 }
 }
 

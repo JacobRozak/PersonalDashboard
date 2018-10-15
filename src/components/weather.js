@@ -4,6 +4,7 @@ import axios from 'axios'
 import sun from '../assets/Sun_icon.png'
 import rain from '../assets/Rain_icon.png'
 import cloud from '../assets/Clouds_icon.png'
+import {geolocated} from 'react-geolocated';
 
 
 class Weather extends Component{
@@ -13,8 +14,10 @@ class Weather extends Component{
     }
    componentDidMount(){
      // let id = this.props.match.params.post_id
+
+     console.log(this.props.location)
       
-      axios.get('http://api.openweathermap.org/data/2.5/weather?q=London&appid=d0a10211ea3d36b0a6423a104782130e')
+      axios.get('http://api.openweathermap.org/data/2.5/weather?q='+ this.props.location +'&appid=d0a10211ea3d36b0a6423a104782130e')
       .then(res =>{
          //const currentWeather = res.data
         const icon = parseInt(res.data.weather[0].icon)
@@ -22,20 +25,20 @@ class Weather extends Component{
             post:res.data,
             icon:icon
          })
-         //console.log(this.state)
+         
          //console.log(res.data.weather[0].icon)
         
       })
    }
    render(){
-
+    console.log(this.props.coords)
      const selected = this.state.post
      const temp = function(e){
          return Math.round(e - 273.15)
      }
      let icon = this.state.icon
    
-     console.log(icon)
+    // console.log(icon)
 
     let pickedIcon = null;
 
@@ -52,14 +55,15 @@ class Weather extends Component{
      (
       <div>
         <div>
-          <img src={pickedIcon}></img>
-          <p>
+          <img id='weatherPic' src={pickedIcon}></img>
+          <div id='weatherTxt'><p className='weat'>
               {temp(selected.main.temp)} degrees
           </p>
         </div>
-          <h2>
+          <h2 className='weat'>
                {selected.name}
           </h2>
+          </div>
       </div>
         
      ):
@@ -76,4 +80,9 @@ class Weather extends Component{
    }
 }
 
-export default Weather
+export default geolocated({
+    positionOptions: {
+      enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+  }) (Weather)
