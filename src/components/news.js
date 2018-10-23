@@ -59,6 +59,7 @@ class News extends Component{
                   {this.props.transform?
                   (
                      <div>
+                         <h1 className='header'> News </h1>
                          <img src={pic}></img>
                          <h1 className='weat'>{title}</h1>
                          <h2 className='weat'>{content}</h2>

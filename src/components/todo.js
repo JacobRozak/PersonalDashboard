@@ -2,56 +2,75 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    Form,
+    FormGroup,
+    Label,
+    Input
+} from 'reactstrap'
 
 class Todo extends Component{
     state ={
-        todos:[{
-            todo:'task1',
-            tick:false
-        },{
-            todo:'task2',
-            tick:false
-        },{
-            todo:'task3',
-            tick:false
-        },{
-            todo:'task4',
-            tick:false
-        },{
-            todo:'task5',
-            tick:false
-        },{
-            todo:'task6',
-            tick:false
-        },{
-            todo:'task7',
-            tick:false
-        }
-    ]
+      task:null,
+      tasks:[]
     }
     
-    componentDidMount(){
-        axios.put('/user/update', {
-            path:this.state.todos
-        })
-        .then(response => {
-            console.log('login response: ')
-            console.log(response)
-    }).catch(error => {
-        console.log('Logout error')
-    })
-}
+    onChange = (e) => {
+        e.preventDefault()
+        this.setState({ task:e.target.value})
+        console.log(this.state.task)
+        //this.onSubmit()
+//console.log(this.state.tasks)
+        
+    }
+
+    onSubmit = e => {
+        e.preventDefault()
+        console.log(this.state.task)
+        var joined = this.state.tasks.concat(this.state.task);
+        this.setState({tasks:joined})
+        //this.check()
+        
+    }
+    check = e =>{
+        e.preventDefault()
+        console.log(this.state.tasks)
+    }
+   
     render(){
-        const todos = this.state.todos
-       // console.log(todos)
-        var display = todos.forEach(e=>{
-            return '<li>'+ e.todo +'</li>'
-        })
+        
         return(
             <div>
-                <ul>
-                  {display}
-               </ul>
+                <div id='task'>
+                <form onSubmit={this.onSubmit}>
+                <input placeholder="task 1" 
+                   type="text"
+                   onChange={this.onChange} 
+                ></input>
+                </form>
+                </div>
+                <div className='input-field col s3'>
+                <form onSubmit={this.onSubmit}>
+                <input placeholder="task 2" 
+                   type="text"
+
+                   onChange={this.onChange} 
+                ></input>
+                </form>
+                </div>
+                <div className='input-field col s3'>
+                <form onSubmit={this.onSubmit}>
+                <input placeholder="task 3" 
+                   type="text"
+
+                   onChange={this.onChange} 
+                ></input>
+                </form>
+                </div>
             </div>
         )
     }

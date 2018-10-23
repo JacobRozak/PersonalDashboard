@@ -6,9 +6,13 @@ import axios from 'axios'
 import { Route, Link } from 'react-router-dom'
 
 import Matches from './matches'
-import Pictures from './pictures'
+import ImageUpload from './pictures'
+
+import Todo from './todo'
 
 import {geolocated} from 'react-geolocated';
+
+import Pie from './chart'
 
 
 
@@ -19,6 +23,7 @@ class Home extends Component {
         this.logout = this.logout.bind(this)
         this.newsClick = this.newsClick.bind(this)
         this.matchClick = this.matchClick.bind(this)
+        this.pictureClick = this.pictureClick.bind(this)
         //this.getLocation = this.getLocation.bind(this)
         //this.showPosition = this.showPosition.bind(this)
         this.state={
@@ -26,7 +31,8 @@ class Home extends Component {
             longitude:null,
             redirectTo: null,
             news:'burp',
-            location: 'London'
+            location: 'London',
+            transform1:true
         }
     }
     
@@ -68,6 +74,20 @@ class Home extends Component {
             redirectTo:"/fullMatches"
         })
     }
+    pictureClick(e) {
+        e.preventDefault()
+        console.log('click')
+        this.setState({
+            redirectTo:"/fullPictures"
+        })
+    }
+    todoClick(e) {
+        e.preventDefault()
+        console.log('click')
+        this.setState({
+            redirectTo:"/fullTodo"
+        })
+    }
 
     render() {
         console.log(this.props.coords)
@@ -77,18 +97,22 @@ class Home extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         }else if(this.state.redirectTo ==='/fullMatches'){
             return <Redirect to={{ pathname: this.state.redirectTo }} />
-        }else{
+        }else if(this.state.redirectTo ==='/fullPictures'){
+            return <Redirect to={{ pathname: this.state.redirectTo }} />
+        }else if(this.state.redirectTo ==='fullTodo'){
+            return <Redirect to={{ pathname: this.state.redirectTo }} />
+        }else{ 
         return (
         <div>
             <h1 className='great'>Good Day, {this.props.username}!</h1>
             <Link to='#' onClick={this.logout} id='logout'>LOGOUT</Link>
             <div class="grid-container">
-                <div class="grid-item"><span className="weat">Weather</span><div class="card"><Weather location={this.state.location} /></div></div>
-                <div class="grid-item" onClick={this.newsClick}><span className="weat">News</span><div class="card"><News updateNews={this.passNews}/></div></div>
-                <div class="grid-item" onClick={this.matchClick}><span className="weat">Sport</span><div class="card"><Matches /></div></div>  
-                <div class="grid-item"><span className="weat">Photos</span><div class="card"><Pictures /></div></div>
-                <div class="grid-item"><span className="weat">Tasks</span><div class="card"></div></div>
-                <div class="grid-item"><span className="weat">Clothes</span><div class="card"></div></div>  
+                <div className="grid-item"><span className="weat">Weather</span><div className="card"><Weather location={this.state.location} /></div></div>
+                <div className="grid-item" onClick={this.newsClick}><span className="weat">News</span><div class="card"><News /></div></div>
+                <div className="grid-item" onClick={this.matchClick}><span className="weat">Sport</span><div class="card"><Matches /></div></div>  
+                <div className="grid-item" onClick={this.pictureClick}><span className="weat">Photos</span><div className="card"><ImageUpload /></div></div>
+                <div className="grid-item"><span className="weat">Tasks</span><div className="card"><Todo /></div></div>
+                <div className="grid-item"><span className="weat">Clothes</span><div className="card"><Pie /></div></div>  
             </div>
         </div>
 

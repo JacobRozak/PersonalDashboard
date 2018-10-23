@@ -86,3 +86,23 @@
 				</div>
 			</form>
 		</div>
+
+
+<div className='input-field col s3'>
+                    <h3 contentEditable='true' id='1' className='task'>task 1</h3>
+                </div>
+                <div>
+                    <h3 contentEditable='true' id='2' className='task'>task 2</h3>
+                </div>
+                <div>
+                    <h3 contentEditable='true' id='3' className='task'>task 3</h3>
+                </div>
+                <div>
+                    <h3 contentEditable='true' id='4' className='task'>task 4</h3>
+                </div>
+                <div>
+                    <h3 contentEditable='true' id='5' className='task'>task 5</h3>
+                </div>
+                <div>
+                    <h3 contentEditable='true'id='6' className='task'>task 6</h3>
+                </div>

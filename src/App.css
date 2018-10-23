@@ -64,6 +64,32 @@
   width: 421px;
   border-radius: 10px;
 }
+.grid-item1 {
+  background-color: #1b344f;
+  border: 1.5px solid #f7f747;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  height: 309px;
+  width: 421px;
+  border-radius: 10px;
+}
+.grid-item2 {
+  background-color: #1b344f;
+  border: 1.5px solid #f7f747;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  height: 100px;
+  width: 110px;
+  border-radius: 10px;
+}
+.grid-container2 {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: auto auto auto;
+  padding: 5px;
+}
 .card{
   width:418px;
   margin-left:-5%;
@@ -143,4 +169,29 @@
 }
 #newsDescription{
   color:black;
+}
+
+#teamName{
+  font-size: 40px;
+  margin-left: 190px;
+  margin-top: 10%
+}
+.header{
+  margin-left: -80%;
+  color:white;
+}
+#header1{
+  margin-left: -50%;
+  color:white
+}
+.picture{
+   margin-left: -13px;
+   margin-top: -18px;
+}
+#file{
+  display:none;
+}
+#task{
+  color:white;
+  border-bottom: white 2px solid;
 }

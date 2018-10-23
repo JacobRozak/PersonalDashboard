@@ -13,6 +13,9 @@ import Todo from './components/todo'
 
 import FullNews from './components/fullNews'
 import FullMatches from './components/fullMatches'
+import ImageUpload from './components/pictures'
+import FullPictures from './components/fullPictures'
+import FullTodo from './components/fullTodo'
 
 class App extends Component {
   constructor() {
@@ -79,8 +82,10 @@ class App extends Component {
             <Signup/>}
         />
         <Route
-        path='/todos'
-        component = {Todo}/>
+        path='/todo'
+        render={() =>
+          <Todo
+          />}/>
 
       <Route
           exact path="/fullNews"
@@ -95,7 +100,25 @@ class App extends Component {
             <FullMatches
             />}
         />
-       
+       <Route
+          exact path="/images"
+          render={() =>
+            <ImageUpload
+            />}
+        />
+        <Route
+          exact path="/fullPictures"
+          render={() =>
+            <FullPictures
+            />}
+        />
+        <Route
+          exact path="/fullTodo"
+          render={() =>
+            <FullTodo
+            />}
+        />
+
       </div>
     );
   }
